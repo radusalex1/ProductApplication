@@ -142,6 +142,7 @@
     <None Include="product.prodb" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CategoryName.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

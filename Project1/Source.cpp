@@ -6,6 +6,26 @@
 #include "Product.h"
 #include "CategoryName.h"
 
+void stringToCategory(std::string& ExpiringDateOrCategoryName, CategoryName& category)
+{
+
+	if (ExpiringDateOrCategoryName == "PersonalHygiene")
+	{
+		category = CategoryName::PersonalHygiene;
+	}
+	else
+	{
+		if (ExpiringDateOrCategoryName == "SmallAppliences")
+		{
+			category = CategoryName::SmallAppliences;
+		}
+		else
+		{
+			category = CategoryName::Clothing;
+		}
+	}
+}
+
 int main()
 {
 	/*std::ifstream f("product.prodb");*/
@@ -17,12 +37,6 @@ int main()
 	uint16_t Tva;
 	std::string ExpiringDateOrCategoryName;
 
-	/*while (!f.eof())
-	{
-		f >> Id >> ProductName >> Price >> Tva >> ExpiringDateOrCategoryName;
-
-	}*/
-	///  \d\d\d\d-\d\d-\d\d
 	for (std::ifstream f("product.prodb"); !f.eof();/*empty*/)
 	{
 		f >> Id >> ProductName >> Price >> Tva >> ExpiringDateOrCategoryName;
@@ -31,13 +45,25 @@ int main()
 
 		if (std::regex_match(ExpiringDateOrCategoryName, DateRegex) == true)
 		{
-			Product product(Id, ProductName, Price, Tva, ExpiringDateOrCategoryName);
-			products.push_back(product);
+			/*Product product(Id, ProductName, Price, Tva, ExpiringDateOrCategoryName);
+			products.push_back(product);*/
+			products.emplace_back(Id, ProductName, Price, Tva, ExpiringDateOrCategoryName);
+
 		}
 		else
 		{
-			Product product(Id, ProductName, Price, Tva, ExpiringDateOrCategoryName); // to do: check for categoryname in enum
-			products.push_back(product);
+			CategoryName category;
+			stringToCategory(ExpiringDateOrCategoryName,category);
+			//Product product(Id, ProductName, Price, Tva, category); // to do: check for categoryname in enum
+			//products.push_back(product);
+			products.emplace_back(Id, ProductName, Price, Tva, category);
+		}
+	}
+	for (auto it : products)
+	{
+		if (it.getTva() == 19)
+		{
+			std::cout << it;
 		}
 	}
 }
