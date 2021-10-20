@@ -59,6 +59,7 @@ int main()
 			products.emplace_back(Id, ProductName, Price, Tva, category);
 		}
 	}
+
 	for (auto it : products)
 	{
 		if (it.getTva() == 19)

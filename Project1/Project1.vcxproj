@@ -143,11 +143,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CategoryName.cpp" />
+    <ClCompile Include="PerishableProduct.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CategoryName.h" />
+    <ClInclude Include="PerishableProduct.h" />
     <ClInclude Include="Product.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
